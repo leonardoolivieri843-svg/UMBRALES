@@ -1,5 +1,5 @@
 import type { FilterState, CertaintyLevel, NodeStatus } from '../types'
-import { certaintyColor, certaintyLabel, statusColor, statusLabel } from '../utils/colors'
+import { certaintyColor, certaintyLabel, statusColor } from '../utils/colors'
 
 interface Props {
   filters: FilterState
