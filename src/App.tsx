@@ -6,6 +6,7 @@ import {
   MiniMap,
   BackgroundVariant,
   type NodeMouseHandler,
+  type ReactFlowInstance,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 
@@ -16,6 +17,7 @@ import KnowledgeNodeComponent from './components/KnowledgeNode'
 import NodePanel from './components/NodePanel'
 import FilterBar from './components/FilterBar'
 import Header from './components/Header'
+import SearchBar from './components/SearchBar'
 
 import type { KnowledgeNode, FilterState, CertaintyLevel } from './types'
 
@@ -30,6 +32,7 @@ const defaultFilters: FilterState = {
 export default function App() {
   const [selectedNode, setSelectedNode] = useState<KnowledgeNode | null>(null)
   const [filters, setFilters] = useState<FilterState>(defaultFilters)
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance | null>(null)
 
   const filteredNodes = knowledgeNodes.filter(node => {
     const certaintyMatch = filters.certainty.includes(node.certainty as CertaintyLevel)
@@ -56,6 +59,17 @@ export default function App() {
     []
   )
 
+  const handleSearchSelect = useCallback(
+    (node: KnowledgeNode) => {
+      setSelectedNode(node)
+      rfInstance?.setCenter(node.position.x, node.position.y, {
+        zoom: 1,
+        duration: 600,
+      })
+    },
+    [rfInstance]
+  )
+
   return (
     <div className="w-screen h-screen flex flex-col overflow-hidden">
       <Header />
@@ -67,6 +81,7 @@ export default function App() {
           nodeTypes={nodeTypes}
           onNodeClick={onNodeClick}
           onPaneClick={() => setSelectedNode(null)}
+          onInit={setRfInstance}
           fitView
           fitViewOptions={{ padding: 0.12 }}
           minZoom={0.15}
@@ -86,6 +101,8 @@ export default function App() {
             maskColor="rgba(5,5,16,0.75)"
           />
         </ReactFlow>
+
+        <SearchBar nodes={filteredNodes} onSelect={handleSearchSelect} />
 
         <FilterBar
           filters={filters}
