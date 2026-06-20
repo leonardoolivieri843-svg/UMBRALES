@@ -76,10 +76,22 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Hint */}
-      <p className="text-[10px] font-mono text-slate-600 hidden lg:block">
-        clic en un nodo para explorar
-      </p>
+      {/* Hint + link público */}
+      <div className="hidden lg:flex items-center gap-3">
+        <p className="text-[10px] font-mono text-slate-600">
+          clic en un nodo para explorar
+        </p>
+        <div className="w-px h-4" style={{ background: '#1e1e3a' }} />
+        <a
+          href="https://impulsotech24-umbrales.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[10px] font-mono tracking-wide transition-colors"
+          style={{ color: '#6366f1' }}
+        >
+          impulsotech24-umbrales.vercel.app
+        </a>
+      </div>
     </div>
   )
 }

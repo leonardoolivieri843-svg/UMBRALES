@@ -75,13 +75,13 @@ Vercel detecta el push y redeploya automáticamente en 1-2 minutos.
 
 ## Checklist pre-lanzamiento
 
-- [ ] Repositorio creado en GitHub
-- [ ] Código subido con `git push`
-- [ ] Deploy en Vercel exitoso
-- [ ] URL pública funcionando
+- [x] Repositorio creado en GitHub
+- [x] Código subido con `git push`
+- [x] Deploy en Vercel exitoso
+- [x] URL pública funcionando
 - [ ] URL agregada en la descripción del canal de YouTube
 - [ ] URL mencionada en el video piloto
-- [ ] Link en el README del proyecto
+- [x] Link en el README del proyecto
 
 ---
 
